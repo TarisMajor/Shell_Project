@@ -34,14 +34,16 @@ if __name__ == "__main__":
     # Load the commands dynamically from Command_Packages
     load_commands()
 
-    print(cmds)
+    #print(cmds)
     # Example usage:
-    cmd = "ls"
-    params = ["/usr/local/bin"]
+    cmd = "history"
+    params = []
 
     # Call the function dynamically from the dictionary
     if cmd in cmds:
-        result = cmds[cmd](params=params)
+        result = cmds[cmd]
+        #(params=params)
         print(result)
     else:
         print(f"Command '{cmd}' not found.")
+        

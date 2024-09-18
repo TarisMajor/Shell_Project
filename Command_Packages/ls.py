@@ -1,10 +1,18 @@
 #!/usr/bin/env python
 import subprocess
+import os
+import stat
 
 
-def ls(**kwargs):
+def ls(*flags):
     """This is my manpage entry for the pwd command"""
-    folder = kwargs.get("params", [])
-    result = subprocess.run(["ls", "-lah", folder[0]], stdout=subprocess.PIPE)
+    #folder = kwargs.get("params", [])
+    #result = subprocess.run(["ls", "-lah", folder[0]], stdout=subprocess.PIPE)
 
-    return result.stdout.decode("utf-8")
+    # return result.stdout.decode("utf-8")
+    for flag in flags:
+        print(f"{flag}")
+    
+ls("l", "a0", "h")
+ 
+ #use the os library to get the last modified date, permissions, owner and such

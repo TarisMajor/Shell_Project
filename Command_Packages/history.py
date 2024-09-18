@@ -1,4 +1,4 @@
-# cmd_pkg/pwd.py
+# Command_Packages/pwd.py
 
 import os
 

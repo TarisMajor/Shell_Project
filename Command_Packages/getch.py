@@ -1,3 +1,5 @@
+import sys
+
 class Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
@@ -40,10 +42,19 @@ class _GetchWindows:
 if __name__=='__main__':
 
     getch = Getch()                             # create instance of our getch class
-    prompt = "%:"                               # set default prompt
+    prompt = "%Testing:"                        # set default prompt
+    input = ""
 
-
-    while True:                             # loop forever
+    while True:                                 # loop forever
 
         char = getch()   
-        print(char)
+        if(char == "~"):
+            print(" ")
+            break
+        
+        input = input + char
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        #echo(input)
+        
+        
