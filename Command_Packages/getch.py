@@ -37,22 +37,37 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
     
-
+def ShellPrompt(prompt):
+    sys.stdout.write(prompt)
+    sys.stdout.flush()
 
 if __name__=='__main__':
 
     getch = Getch()                             # create instance of our getch class
     prompt = "%Testing:"                        # set default prompt
     input = ""
+    lastChar = ""
+    
+    ShellPrompt(prompt)
 
     while True:                                 # loop forever
-
-        char = getch()   
-        if(char == "~"):
+        
+        char = getch()  
+        input += char
+        
+        if char == "\x7f":
+            input = input[:-2]
+            sys.stdout.write('\b \b')
+            
+        elif char == "\r":
+            print(" ")
+            print(input)
+            break
+            
+        elif char == "~":
             print(" ")
             break
         
-        input = input + char
         sys.stdout.write(char)
         sys.stdout.flush()
         #echo(input)
