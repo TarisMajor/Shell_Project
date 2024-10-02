@@ -12,7 +12,8 @@ def ls(*flags):
     # return result.stdout.decode("utf-8")
     for flag in flags:
         print(f"{flag}")
-    
-ls("l", "a0", "h")
+
  
  #use the os library to get the last modified date, permissions, owner and such
+ 
+ #Ls = ls(*testFlags)

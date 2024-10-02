@@ -1,6 +1,8 @@
 import importlib
 import pkgutil
 import Command_Packages
+from Command_Packages.getch import Getch
+import sys
 
 # Dictionary to store the commands
 cmds = {}
@@ -28,6 +30,10 @@ def get_docstring(func_name):
         return cmds[func_name].__doc__
     else:
         return f"Function '{func_name}' not found."
+    
+def ShellPrompt(prompt):
+    sys.stdout.write(prompt)
+    sys.stdout.flush()
 
 
 if __name__ == "__main__":
@@ -36,14 +42,45 @@ if __name__ == "__main__":
 
     #print(cmds)
     # Example usage:
-    cmd = "history"
+    #cmd = "history"
+    getch = Getch()                             # create instance of our getch class
+    prompt = "%Testing:"                        # set default prompt
+    input = ""
+    
+    ShellPrompt(prompt)
+
+    while True:                                 # loop forever
+        
+        char = getch()  
+        input += char
+        
+        if char == "\x7f":
+            input = input[:-2]
+            sys.stdout.write('\b \b')
+            
+        elif char == "\r":
+            print(" ")
+            break
+            
+        elif char == "~":
+            print(" ")
+            break
+        
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        #echo(input)
+    
     params = []
+    cmd, *params = input.split()
+    
+    print(cmd)
+    print(params)
 
     # Call the function dynamically from the dictionary
-    if cmd in cmds:
-        result = cmds[cmd]
+    #if cmd in cmds:
+        #result = cmds[cmd]
         #(params=params)
-        print(result)
-    else:
-        print(f"Command '{cmd}' not found.")
+        #print(result)
+    #else:
+        #print(f"Command '{cmd}' not found.")
         

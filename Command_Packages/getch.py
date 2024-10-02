@@ -46,7 +46,6 @@ if __name__=='__main__':
     getch = Getch()                             # create instance of our getch class
     prompt = "%Testing:"                        # set default prompt
     input = ""
-    lastChar = ""
     
     ShellPrompt(prompt)
 
