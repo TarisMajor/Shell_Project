@@ -1,12 +1,15 @@
 import importlib
 import pkgutil
 import Command_Packages
+from Command_Packages import *
 from Command_Packages.getch import Getch
 import sys
 
 # Dictionary to store the commands
 cmds = {}
 
+# Set the current working directory 
+cwd = "/home/users"
 
 # Dynamically load all functions from Command_Packages into the dictionary
 def load_commands():
@@ -61,6 +64,13 @@ def get_params(command):
             
     return params
 
+def write_to_file(data):
+    # Open the file in append mode
+    with open('history.txt', 'a') as file:
+        file.write(data)
+        file.write("\n")
+        file.close()
+
 
 def parse(shellInput):
     
@@ -106,6 +116,7 @@ def getCommands(commands):
             
         elif char == "\r":
             print(" ")
+            write_to_file(input)
             break
             
         elif char == "~":
@@ -132,10 +143,24 @@ if __name__ == "__main__":
     
     commandList = parse(command)                #Parses the string into a list of dictionaries
     
+    print(commandList)
+    
     for item in commandList:
         cmd = item["cmd"]
         flags = item["flags"]
         params = item["params"]
+        
+        if cmd in cmds:
+            if not flags and not params:
+                result = cmds[cmd]
+            elif not flags:
+                result = cmds[cmd](params = params)
+            elif not params:
+                result = cmds[cmd](flags = flags)
+            else:
+                result = cmds[cmd](flags = flags)(params = params)
+        print(result)
+            
 
     # Call the function dynamically from the dictionary
     #if cmd in cmds:
@@ -145,5 +170,6 @@ if __name__ == "__main__":
     #else:
         #print(f"Command '{cmd}' not found.")
         
+    
     sys.exit(0)
         

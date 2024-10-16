@@ -1,7 +1,7 @@
-# cmd_pkg/pwd.py
+# Command_Packages/grep.py
+import re
 
-import os
-
-
-def grep(pattern, file):
-    return os.grep(pattern, file)
+def grep(params):
+    pattern = params[0]
+    file = params[1]
+    
