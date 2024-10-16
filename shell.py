@@ -34,21 +34,67 @@ def get_docstring(func_name):
 def ShellPrompt(prompt):
     sys.stdout.write(prompt)
     sys.stdout.flush()
+    
+    
+def get_flags(command):
+    flags = []
+    for c in command:
+        if c.startswith("-") or c.startswith("--"):
+            flags.append(c)
+    return flags
+
+def get_params(command):
+    params = []
+    for c in command:
+        if "-" in c or "--" in c:
+            continue
+        params.append(c)
+        
+    for i, p in enumerate(params[:-1]):
+        if (
+            params[i].startswith("'")
+            and params[i + 1].endswith("'")
+            or params[i].startswith('"')
+            and params[i + 1].endswith('"')
+        ):
+            params[i] = params[i] + " " + params[i + 1]
+            
+    return params
 
 
-if __name__ == "__main__":
-    # Load the commands dynamically from Command_Packages
-    load_commands()
+def parse(shellInput):
+    
+    redirect = None
+    
+    if ">" in shellInput:
+        shellInput, redirect = shellInput.split(">")
+    
+    if "|" in shellInput:
+        subCmds = shellInput.split("|")
+    else:
+        subCmds = [shellInput]
 
-    #print(cmds)
-    # Example usage:
-    #cmd = "history"
-    getch = Getch()                             # create instance of our getch class
-    prompt = "%Testing:"                        # set default prompt
+    cmdList = []
+    
+    for i in range(len(subCmds)):
+       
+        cmd = subCmds[i].strip()
+        cmd = cmd.split(" ")
+        
+        cmdDict = {
+            "cmd": cmd[0],
+            "flags": get_flags(cmd),
+            "params": get_params(cmd[1:]),
+        }
+        cmdList.append(cmdDict)
+        # freak | ls -l -a -h | grep cout hav.txt parms.txt
+        
+    print(cmdList)
+    return cmdList
+    
+def getCommands(commands):
     input = ""
     
-    ShellPrompt(prompt)
-
     while True:                                 # loop forever
         
         char = getch()  
@@ -68,13 +114,25 @@ if __name__ == "__main__":
         
         sys.stdout.write(char)
         sys.stdout.flush()
-        #echo(input)
+    return input
+
+
+if __name__ == "__main__":
+    # Load the commands dynamically from Command_Packages
+    load_commands()
+
     
-    params = []
-    cmd, *params = input.split()
+    getch = Getch()                             # create instance of our getch class
+    prompt = "%Testing:"                        # set default prompt
+    input = ""
     
-    print(cmd)
-    print(params)
+    ShellPrompt(prompt)
+
+    command = getCommands(input)
+    
+    commandList = parse(command)
+    
+    
 
     # Call the function dynamically from the dictionary
     #if cmd in cmds:
@@ -83,4 +141,6 @@ if __name__ == "__main__":
         #print(result)
     #else:
         #print(f"Command '{cmd}' not found.")
+        
+    sys.exit(0)
         
