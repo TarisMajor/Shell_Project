@@ -1,7 +1,4 @@
-# cmd_pkg/pwd.py
-
-import os
-
+# Command_Packages/pwd.py
 
 def pwd():
-    return os.getcwd()
+    pass
