@@ -89,7 +89,7 @@ def parse(shellInput):
         cmdList.append(cmdDict)
         # freak | ls -l -a -h | grep cout hav.txt parms.txt
         
-    print(cmdList)
+    #print(cmdList)
     return cmdList
     
 def getCommands(commands):
@@ -126,13 +126,16 @@ if __name__ == "__main__":
     prompt = "%Testing:"                        # set default prompt
     input = ""
     
-    ShellPrompt(prompt)
+    ShellPrompt(prompt)                         #Print the prompt to the screen
 
-    command = getCommands(input)
+    command = getCommands(input)                #Uses getch to get a string from the user
     
-    commandList = parse(command)
+    commandList = parse(command)                #Parses the string into a list of dictionaries
     
-    
+    for item in commandList:
+        cmd = item["cmd"]
+        flags = item["flags"]
+        params = item["params"]
 
     # Call the function dynamically from the dictionary
     #if cmd in cmds:
