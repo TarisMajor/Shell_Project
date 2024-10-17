@@ -149,17 +149,16 @@ if __name__ == "__main__":
         cmd = item["cmd"]
         flags = item["flags"]
         params = item["params"]
-        
         if cmd in cmds:
+            
             if not flags and not params:
-                result = cmds[cmd]
+                result = cmds[cmd]()
             elif not flags:
-                result = cmds[cmd](params = params)
+                result = cmds[cmd](params)
             elif not params:
-                result = cmds[cmd](flags = flags)
+                result = cmds[cmd](flags)
             else:
-                result = cmds[cmd](flags = flags)(params = params)
-        print(result)
+                result = cmds[cmd](flags, params)
             
 
     # Call the function dynamically from the dictionary

@@ -22,3 +22,14 @@ history
 history
 grep history history.txt
 grep history history.txt
+history
+history
+history
+history
+history
+history
+history
+history
+ls -l -a -h
+history
+history
