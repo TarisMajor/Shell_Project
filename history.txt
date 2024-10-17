@@ -33,3 +33,14 @@ history
 ls -l -a -h
 history
 history
+pretty
+history
+history
+history
+history
+history -r
+history -rat blah.txt
+history -rat blah.txt
+history -rat blah.txt 
+history -rat blah.txt 
+history -rat blah.txt 

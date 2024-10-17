@@ -144,31 +144,22 @@ if __name__ == "__main__":
     commandList = parse(command)                #Parses the string into a list of dictionaries
     
     print(commandList)
+    result = ''
     
     for item in commandList:
         cmd = item["cmd"]
         flags = item["flags"]
         params = item["params"]
+        args = {"flags":flags, "params": params}
+        # Call the function dynamically from the dictionary
         if cmd in cmds:
-            
-            if not flags and not params:
-                result = cmds[cmd]()
-            elif not flags:
-                result = cmds[cmd](params)
-            elif not params:
-                result = cmds[cmd](flags)
-            else:
-                result = cmds[cmd](flags, params)
-            
-
-    # Call the function dynamically from the dictionary
-    #if cmd in cmds:
-        #result = cmds[cmd]
-        #(params=params)
-        #print(result)
-    #else:
-        #print(f"Command '{cmd}' not found.")
+            result = cmds[cmd](**args)
+            params.append(result)
         
-    
+        else:
+            print(f"Command '{cmd}' not found.")
+             
+        # history -rat blah.txt 
+    print(result)
     sys.exit(0)
         
