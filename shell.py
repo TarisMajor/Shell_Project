@@ -1,7 +1,6 @@
 import importlib
 import pkgutil
 import Command_Packages
-from Command_Packages import *
 from Command_Packages.getch import Getch
 import sys
 
@@ -10,6 +9,11 @@ cmds = {}
 
 # Set the current working directory 
 cwd = "/home/users"
+
+# Modify the cwd to be called by other functions
+def modify_CWD(new_cwd):
+    global cwd
+    cwd = new_cwd
 
 # Dynamically load all functions from Command_Packages into the dictionary
 def load_commands():

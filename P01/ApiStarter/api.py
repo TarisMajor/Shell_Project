@@ -60,10 +60,6 @@ app = FastAPI(
 #  | |___| |__| | |____ / ____ \| |____  | |____| |____ / ____ \ ____) |___) | |____ ____) |
 #  |______\____/ \_____/_/    \_\______|  \_____|______/_/    \_\_____/_____/|______|_____/
 
-# This is where you will add code to load all the countries and not just countries. Below is a single
-# instance of the class `CountryReader` that loads countries. There are 6 other continents to load or
-# maybe you create your own country file, which would be great. But try to implement a class that
-# organizes your ability to access a countries polygon data.
 # """
 
 
@@ -127,7 +123,7 @@ def split_file_to_chunks(file_path, chunk_size=1024, encoding="utf-8"):
 
 #  This is where your routes will be defined. Remember they are really just python functions
 #  that will talk to whatever class you write above. Fast Api simply takes your python results
-#  and packagres them so they can be sent back to your programs request.
+#  and packages them so they can be sent back to your programs request.
 # """
 
 
