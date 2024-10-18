@@ -1,8 +1,11 @@
 import importlib
 import pkgutil
+import sqlite3
 import Command_Packages
 from Command_Packages.getch import Getch
+
 import sys
+import os
 
 # Dictionary to store the commands
 cmds = {}
@@ -15,6 +18,11 @@ def modify_CWD(new_cwd):
     global cwd
     cwd = new_cwd
 
+# Connect to SqLite database
+def connSqLite(dbPath):
+    conn = sqlite3.connect(dbPath)
+    cursor = conn.cursor()
+    
 # Dynamically load all functions from Command_Packages into the dictionary
 def load_commands():
     global cmds
@@ -68,7 +76,7 @@ def get_params(command):
             
     return params
 
-def write_to_file(data):
+def write_to_history(data):
     # Open the file in append mode
     with open('history.txt', 'a') as file:
         file.write(data)
@@ -120,7 +128,7 @@ def getCommands(commands):
             
         elif char == "\r":
             print(" ")
-            write_to_file(input)
+            write_to_history(input)
             break
             
         elif char == "~":
@@ -135,7 +143,6 @@ def getCommands(commands):
 if __name__ == "__main__":
     # Load the commands dynamically from Command_Packages
     load_commands()
-
     
     getch = Getch()                             # create instance of our getch class
     prompt = "%Testing:"                        # set default prompt

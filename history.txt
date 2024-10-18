@@ -61,3 +61,19 @@ head ./P01/ApiStarter/data/beowulf.txt
 head
 head ./P01/ApiStarter/data/beowulf.txt
 head ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+ls
+ls
+ls
+ls -l -a -h params
+head quad2.text
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head ./P01/ApiStarter/data/beowulf.txt
+head quad2.md
+head quad2.md
+head quad2.md

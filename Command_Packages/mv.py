@@ -2,7 +2,7 @@
 from shell import cwd
 import sqlite3
 import os
-#from sqliteCRUD import SqliteCRUD
+from .sqliteCRUD import SqliteCRUD
 
 # def dbConnect():
 #     dataPath = "../P01/ApiStarter/data/"
