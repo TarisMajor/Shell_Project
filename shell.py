@@ -11,7 +11,7 @@ import os
 cmds = {}
 
 # Set the current working directory 
-cwd = "/home/users"
+cwd = "/1000-Spacial_Data_Structures"
 
 # Modify the cwd to be called by other functions
 def modify_CWD(new_cwd):
@@ -133,6 +133,7 @@ def getCommands(commands):
             
         elif char == "~":
             print(" ")
+            input = False
             break
         
         sys.stdout.write(char)
@@ -147,30 +148,36 @@ if __name__ == "__main__":
     getch = Getch()                             # create instance of our getch class
     prompt = "%Testing:"                        # set default prompt
     input = ""
-    
-    ShellPrompt(prompt)                         #Print the prompt to the screen
+    loop = True
+    while loop == True:
+        ShellPrompt(prompt)                         #Print the prompt to the screen
 
-    command = getCommands(input)                #Uses getch to get a string from the user
-    
-    commandList = parse(command)                #Parses the string into a list of dictionaries
-    
-    print(commandList)
-    result = ''
-    
-    for item in commandList:
-        cmd = item["cmd"]
-        flags = item["flags"]
-        params = item["params"]
-        args = {"flags":flags, "params": params}
-        # Call the function dynamically from the dictionary
-        if cmd in cmds:
-            result = cmds[cmd](**args)
-            params.append(result)
+        command = getCommands(input)                #Uses getch to get a string from the user
         
-        else:
-            print(f"Command '{cmd}' not found.")
+        if command == False:
+            break
+        
+        commandList = parse(command)                #Parses the string into a list of dictionaries
+    
+        print(commandList)
+        result = ''
+    
+        for item in commandList:
+            cmd = item["cmd"]
+            flags = item["flags"]
+            params = item["params"]
+            args = {"flags":flags, "params": params}
+            # Call the function dynamically from the dictionary
+            if cmd in cmds:
+                result = cmds[cmd](**args)
+                params.append(result)
+        
+            else:
+                print(f"Command '{cmd}' not found.")
              
-        # history -rat blah.txt 
-    print(result)
+            # history -rat blah.txt 
+        print(result)
+        if result == False:
+            loop = result
     sys.exit(0)
         

@@ -77,3 +77,40 @@ head ./P01/ApiStarter/data/beowulf.txt
 head quad2.md
 head quad2.md
 head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head quad2.text
+head misses.txt
+exit
+ls
+ls -lah bleh
+exit
+ls
+ls -lah
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head ga.js
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head ga.js
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head tl_2016_us_primaryroads.cpg
+/bin/python3 /home/tarismajor/Shell/Shell_Project-/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head tl_2016_us_primaryroads.cpg
+head ga.js
