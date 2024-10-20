@@ -3,6 +3,8 @@ import pkgutil
 import sqlite3
 import Command_Packages
 from Command_Packages.getch import Getch
+import rich
+from rich import print
 
 import sys
 import os
@@ -11,7 +13,10 @@ import os
 cmds = {}
 
 # Set the current working directory 
-cwd = "/1000-Spacial_Data_Structures"
+cwd = "/1000-Spatial_Data_Structures"
+
+def get_CWD():
+    return cwd
 
 # Modify the cwd to be called by other functions
 def modify_CWD(new_cwd):
@@ -149,35 +154,33 @@ if __name__ == "__main__":
     prompt = "%Testing:"                        # set default prompt
     input = ""
     loop = True
-    while loop == True:
-        ShellPrompt(prompt)                         #Print the prompt to the screen
+    ShellPrompt(prompt)                         #Print the prompt to the screen
 
-        command = getCommands(input)                #Uses getch to get a string from the user
+    command = getCommands(input)                #Uses getch to get a string from the user
         
-        if command == False:
-            break
+    # if command == False:
         
-        commandList = parse(command)                #Parses the string into a list of dictionaries
+    commandList = parse(command)                #Parses the string into a list of dictionaries
     
-        print(commandList)
-        result = ''
+    print(commandList)
+    result = ''
     
-        for item in commandList:
-            cmd = item["cmd"]
-            flags = item["flags"]
-            params = item["params"]
-            args = {"flags":flags, "params": params}
-            # Call the function dynamically from the dictionary
-            if cmd in cmds:
-                result = cmds[cmd](**args)
-                params.append(result)
-        
-            else:
-                print(f"Command '{cmd}' not found.")
-             
-            # history -rat blah.txt 
+    for item in commandList:
+        cmd = item["cmd"]
+        flags = item["flags"]
+        params = item["params"]
+        args = {"flags":flags, "params": params}
+        # Call the function dynamically from the dictionary
+        if cmd in cmds:
+            result = cmds[cmd](**args)
+            params.append(result)
+      
+        else:
+            print(f"Command '{cmd}' not found.")
+            
+        # history -rat blah.txt 
         print(result)
-        if result == False:
-            loop = result
+        # if result == False:
+        #     loop = result
     sys.exit(0)
         

@@ -2,6 +2,7 @@
 from shell import modify_CWD
 
 global db_Path
+
 default = "/1000-Spacial_Data_Structures"
 
 def cd(**kwargs):

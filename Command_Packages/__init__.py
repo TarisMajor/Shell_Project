@@ -9,4 +9,4 @@ from .sqliteCRUD import SqliteCRUD
 from .mv import mv
 from .dbCommands import DbCommands
 
-__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv"]
+__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands"]

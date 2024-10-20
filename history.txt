@@ -114,3 +114,51 @@ head tl_2016_us_primaryroads.cpg
 /bin/python3 /home/tarismajor/Shell/Shell_Project-/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
 head tl_2016_us_primaryroads.cpg
 head ga.js
+ls
+ls
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/Command_Packages/test.py
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/Command_Packages/test.py
+ls
+ls
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls /1000-Spatial_Data_Structures/papers
+ls -lah
+ls /pah
+ls /1000-Spatial_Data_Structures/ppts
+ls /pah
+ls /1000-Spatial_Data_Structures/
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
