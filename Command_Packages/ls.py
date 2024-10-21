@@ -75,7 +75,6 @@ def ls(**kwargs):
                     return("Directory does not exist.")
            
     if flags:
-        print(flags)
         flags = [flag[1:] for flag in flags]
         
         if len(flags) == 1:
@@ -87,4 +86,5 @@ def ls(**kwargs):
                 listing = DbCommands.get_long_listing(db_path,dir_id, flags)
             else:
                 return("Not a valid flag.")
+            
     return listing

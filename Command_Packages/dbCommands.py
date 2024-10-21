@@ -37,9 +37,7 @@ class DbCommands:
         # Connect to the SQLite database
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        
-        print(name)
-    
+            
         cursor.execute("SELECT id FROM directories WHERE name=?", (name,))
         dir_id = cursor.fetchone()
     
