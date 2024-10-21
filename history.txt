@@ -309,3 +309,11 @@ ls -lh /1000-Spatial_Data_Structures/images
 ls -lh /images
 ls -lh python_code
 ls -lh geo.py
+grep history.txt
+grep ls history.txt
+grep ls history.txt
+grep ls history.txt
+grep ls history.txt
+grep ls history.txt
+ls
+ls -l

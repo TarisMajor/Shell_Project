@@ -4,6 +4,7 @@ import sqlite3
 import Command_Packages
 from Command_Packages.getch import Getch
 from rich import print
+from rich.console import Console
 
 import sys
 import os
@@ -12,7 +13,9 @@ import os
 cmds = {}
 
 # Set the current working directory 
+global cwd
 cwd = "/1000-Spatial_Data_Structures"
+console = Console()
 
 def get_CWD():
     return cwd
@@ -177,7 +180,7 @@ if __name__ == "__main__":
             print(f"Command '{cmd}' not found.")
             
         # history -rat blah.txt 
-        print(result)
+        console.print(result)
         # if result == False:
         #     loop = result
     sys.exit(0)

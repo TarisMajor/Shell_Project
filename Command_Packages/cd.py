@@ -1,5 +1,6 @@
 # Command_Packages/cd.py
 from shell import modify_CWD
+from shell import get_CWD
 
 global db_Path
 
@@ -14,5 +15,5 @@ def cd(**kwargs):
         modify_CWD(default)
         
     else:
-        pass
+        modify_CWD(params)
     
