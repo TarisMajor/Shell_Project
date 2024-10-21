@@ -1,5 +1,5 @@
 # Command_Packages/pwd.py
-from shell import cwd
+from shell import get_CWD
 
 def pwd(**kwargs):
     """
@@ -16,5 +16,7 @@ def pwd(**kwargs):
     # PWD doesn't handle flags nor params
     flags = kwargs.get("flags")
     params = kwargs.get("params")
+    
+    cwd = get_CWD()
     
     return(cwd)

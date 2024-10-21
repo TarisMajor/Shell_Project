@@ -31,6 +31,7 @@ def head(**kwargs):
     flags = kwargs.get("flags")
     params = kwargs.get("params")
     h = ''
+    print(params)
     
     for param in params:
         if "./P01" in param:

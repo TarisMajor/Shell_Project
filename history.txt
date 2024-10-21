@@ -162,3 +162,145 @@ ls
 ls
 ls
 ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls /1000-Spatial_Data_Structures/images
+ls /1000-Spatial_Data_Structures/images
+ls /1000-Spatial_Data_Structures/images
+ls
+ls /1000-Data-Structures/images
+ls /1000-Data-Structures/images
+head /1000-Spatial_Data_Structures
+head /1000-Spatial_Data_Structures
+head ./P01
+head /P01
+ls /1000-Data-Structures/images
+ls bang
+ls /1000
+ls /1000-Data-Structures/images
+ls /1000-Data-St
+ls /1000-Spatial_Data_Structures/images
+ls /1000-Spatial_Data_Structures/python_code
+ls /1000-Spatial_Data_Structures/Astar
+ls /1000-Spatial_Data_Structures/Astar
+ls
+ls
+ls
+ls -l -a -h
+ls -l -a -h
+ls -lah
+ls -lah
+ls -lah
+ls -lah
+ls -lah
+ls -lah
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+[A[Bls -l
+ls
+ls -lah
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls
+ls -l
+ls -l
+ls -l
+ls -l
+ls
+ls -l
+ls -l
+ls -a
+ls -a
+ls -a
+ls -h
+ls -a
+ls -k
+ls -l
+ls -l
+ls -l
+ls -l
+ls -a
+ls -a
+ls -a
+ls -a
+ls -lh
+ls -lh
+ls -lh
+ls -l
+ls -l
+ls -l
+ls -lh
+ls -l
+ls -l
+ls -l
+ls -lh
+ls -lh
+ls -lh
+ls -lh
+ls /1000-Spatial_Data_Structures/ppts
+ls -lah /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls
+ls
+ls
+ls -lh
+ls -lh /1000-Spatial_Data_Structures/ppts

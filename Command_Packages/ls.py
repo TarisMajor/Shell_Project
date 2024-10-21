@@ -1,7 +1,9 @@
+# Command_Packages/ls.py
 from shell import cwd
 from shell import get_CWD
 from .dbCommands import DbCommands
-import rich
+import os
+from rich import print
 
 
 db_path = './P01/ApiStarter/data/filesystem.db'  
@@ -31,32 +33,58 @@ def ls(**kwargs):
     
     flags = kwargs.get("flags")
     params = kwargs.get("params")
-        
+    
+    valid_flags = ["l", "a", "h"]
+            
     cwd = get_CWD()
     
     if "/" in cwd:
-        path = cwd.split("/")
-        path = path[1:]
+        paths = cwd.split("/")
+        paths = paths[1:]
     
-    file = []
-    for location in path:
-        if "." in location:
-            location.append(dirs)
-        dirs = path[:1]
-    file = location[0]
-    
-    
-    if not flags:
-        if not params:
-            for dir in dirs:
-                print(dir)
-                if DbCommands.dir_exists(db_path, dir):
-                    dir_id = DbCommands.get_dir_id(db_path, dir)
+    if params:
+        params_string = ''
+        for param in params:
+            params_string = params_string + param
+            
+        if "/" in params_string:    
+            params = params_string.split("/")
+            params = params[1:]
+                
+        for param in params:
+            if param == params[-1]:
+                parameter = param
+                if DbCommands.dir_exists(db_path, param):
+                    dir_id = DbCommands.get_dir_id(db_path, param)
                     listing = DbCommands.get_listing(db_path, dir_id)
-                    return listing
                 else:
                     return("Directory does not exist.")
-        else:
-            pass
+            
     else:
-        pass
+        if "/" in cwd:
+            params = cwd.split("/")
+            params = params[1:]
+            
+        for param in params:
+            if param == params[-1]:
+                parameter = param
+                if DbCommands.dir_exists(db_path, param):
+                    dir_id = DbCommands.get_dir_id(db_path, param)
+                    listing = DbCommands.get_listing(db_path, dir_id)
+                else:
+                    return("Directory does not exist.")
+           
+    if flags:
+        print(flags)
+        flags = [flag[1:] for flag in flags]
+        
+        if len(flags) == 1:
+            flags = list(flags[0])
+            
+        for flag in flags:
+            if flag in valid_flags:
+                dir_id = DbCommands.get_dir_id(db_path, parameter)
+                listing = DbCommands.get_long_listing(db_path,dir_id, flags)
+            else:
+                return("Not a valid flag.")
+    return listing

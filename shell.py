@@ -3,7 +3,6 @@ import pkgutil
 import sqlite3
 import Command_Packages
 from Command_Packages.getch import Getch
-import rich
 from rich import print
 
 import sys
@@ -66,7 +65,7 @@ def get_flags(command):
 def get_params(command):
     params = []
     for c in command:
-        if "-" in c or "--" in c:
+        if c.startswith("-") or c.startswith("--"):
             continue
         params.append(c)
         
@@ -162,17 +161,16 @@ if __name__ == "__main__":
         
     commandList = parse(command)                #Parses the string into a list of dictionaries
     
-    print(commandList)
     result = ''
     
     for item in commandList:
         cmd = item["cmd"]
         flags = item["flags"]
         params = item["params"]
-        args = {"flags":flags, "params": params}
+        kwargs = {"flags":flags, "params": params}
         # Call the function dynamically from the dictionary
         if cmd in cmds:
-            result = cmds[cmd](**args)
+            result = cmds[cmd](**kwargs)
             params.append(result)
       
         else:
