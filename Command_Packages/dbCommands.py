@@ -3,6 +3,7 @@ from rich.text import Text
 from rich import print
 from .sqliteCRUD import SqliteCRUD
 from prettytable import PrettyTable
+import base64
 
 
 db_path = './P01/ApiStarter/data/filesystem.db'  
@@ -17,6 +18,15 @@ class DbCommands:
         # Query to check if the file exists
         cursor.execute(f'SELECT contents FROM files WHERE id = "{file_id}" AND pid = "{dir_id}"')
         content = ' '.join(map(str, cursor.fetchall())) 
+        
+       
+        content = base64.b64decode(content)
+        content = content.decode("utf-8")
+        
+        print(content)
+        # decoded_string = decoded_bytes.decode('utf-8')
+        
+        # content = decoded_string
     
         # Close the connection
         cursor.close()
@@ -53,6 +63,52 @@ class DbCommands:
         
         return did
         
+    def change_permissions(db_path, name, new_permissions):
+         # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        digit_list = [int(digit) for digit in str(new_permissions)]
+        
+        reg_permissions = digit_list[0]
+       
+        world_permissions = digit_list[1]
+        
+        binary_reg = bin(reg_permissions)[2:].zfill(3)
+        
+        binary_world = bin(world_permissions)[2:].zfill(3)
+        
+        rp = binary_reg[0]
+        wp = binary_reg[1]
+        xp = binary_reg[2]
+        
+        wrp = binary_world[0]
+        wwp = binary_world[1]
+        wxp = binary_world[2]
+        
+        r_query = """
+        UPDATE files
+        SET read_permission = ?,
+            write_permission = ?,
+            execute_permission = ?
+        WHERE name = ?
+        """
+        
+        world_query = """
+        UPDATE files
+        SET world_read = ?,
+            world_write = ?,
+            world_execute = ?
+        WHERE name = ?
+        """
+
+        # Query to check if the file exists
+        cursor.execute(r_query, (rp, wp, xp, name))
+        cursor.execute(world_query, (wrp, wwp, wxp, name))
+        conn.commit()
+        conn.close()
+        
+        return(f"Change Successful.")
     
     def get_file_and_dir_id(db_path, name):
         """

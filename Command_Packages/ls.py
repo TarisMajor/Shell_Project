@@ -67,7 +67,6 @@ def ls(**kwargs):
             
         for param in params:
             if param == params[-1]:
-                parameter = param
                 if DbCommands.dir_exists(db_path, param):
                     dir_id = DbCommands.get_dir_id(db_path, param)
                     listing = DbCommands.get_listing(db_path, dir_id)

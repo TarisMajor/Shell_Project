@@ -317,3 +317,58 @@ grep ls history.txt
 grep ls history.txt
 ls
 ls -l
+head /geo.py
+head /1000-Spatial_Data_Structures/geo.py
+head geo.py
+head geo.py
+head geo.py
+head geo.py
+head quad2.text
+head misses.txt
+head misses.txt
+head misses.txt
+head misses.txt
+ls
+ls /Astar
+ls /pantograph
+ls -l
+ls
+head quad2.text
+head misses.txt
+head crash_data_missed_summary.txt
+head ./P01/ApiStarter/data/beowulf.txt
+head 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+man head
+head -n 50 ./P01?ApiStarter/data/beowuld.txt
+head -n 50 ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail -n 30 ./P01/ApiStarter/data/beowulf ./P01/ApiStarter/data/odyssy.txt
+head -n 30 ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+tail ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data.odyssy.txt
+tail ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+tail -n 30 ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+head input.json
+head ./P01/ApiStarter/data.beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+head -n 60 ./P01/ApiStarter/data/beowulf.txt
+head -n -n ./P01/ApiStarter/data/beowulf.txt
+ls -l
+chmod 77 geo.py
+chmod 77 geo.py
+chmod 31 geo.py
+chmod 32 geo.py
+chmod 32 geo.py
+chmod 32 geo.py
+chmod 01 geo.py
+chmod 32 geo.py

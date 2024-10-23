@@ -31,25 +31,38 @@ def head(**kwargs):
     flags = kwargs.get("flags")
     params = kwargs.get("params")
     h = ''
-    print(params)
+    
+    if flags:
+        if len(flags) == 1:
+            flags = flags[0]
+            flags = flags.strip('-')
+            if flags == 'n':
+                n = int(params[0])
+                params = params[1:]
+            else:
+                return(f'Only -n is supported in this shell')
+        else:
+            return(f'Only -n is supported in this shell')
+    else:  
+        n = 10
     
     for param in params:
         if "./P01" in param:
             with open(param, 'r') as file:
-                for i in range(10):
+                for i in range(n):
                     line = file.readline().strip()
                     h = h + line + '\n'
                 file.close()
         else:
             # Connect to the database and look for the file
             if DbCommands.file_exists(db_path, param):
-                print(f"The file '{param}' exists in the database.")
+                # print(f"The file '{param}' exists in the database.")
                 file_ids = DbCommands.get_file_and_dir_id(db_path, param)
                 file_id = file_ids[0]
                 dir_id = file_ids[1]
                 content = DbCommands.get_Content(db_path, file_id, dir_id)
                 lines = content.splitlines()
-                for line in lines[:10]:
+                for line in lines[:n]:
                     h = h + line + '\n'
                 # Close the connection
             else:
