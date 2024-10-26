@@ -9,6 +9,34 @@ import base64
 db_path = './P01/ApiStarter/data/filesystem.db'  
 
 class DbCommands:
+    
+    def copy(db_path, copy_file, paste_file, paste_pid):
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        query = """
+        SELECT size, contents
+        FROM files
+        WHERE name = ?
+        """
+
+        # Query to check if the file exists
+        cursor.execute(query, (copy_file,))
+        
+        file_contents = cursor.fetchone()
+        
+        size, contents = file_contents
+        
+        query = """
+        INSERT INTO files (pid, name, size, contents, oid, creation_date, modified_date, read_permission, write_permission, execute_permission, world_read, world_write, world_execute)
+        VALUES (?, ?, ?, ?, 1, DATETIME('now'), DATETIME('now'), 1, 1, 0, 0, 0, 0)
+        """
+        cursor.execute(query, (paste_pid, paste_file, size, contents),)
+        conn.commit()
+        conn.close()
+        
+        return('Copy Successful.')
 
     def get_Content(db_path, file_id, dir_id):
         # Connect to the SQLite database
@@ -17,9 +45,9 @@ class DbCommands:
 
         # Query to check if the file exists
         cursor.execute(f'SELECT contents FROM files WHERE id = "{file_id}" AND pid = "{dir_id}"')
-        content = ' '.join(map(str, cursor.fetchall())) 
-        
-       
+        content = cursor.fetchone()
+        print(content)
+        content = b''.join(content)
         content = base64.b64decode(content)
         content = content.decode("utf-8")
         

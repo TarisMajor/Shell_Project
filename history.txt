@@ -372,3 +372,28 @@ chmod 32 geo.py
 chmod 32 geo.py
 chmod 01 geo.py
 chmod 32 geo.py
+cp quad2.txt
+cp quad2.txt
+cp quad2.txt
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp misses.txt
+cp crash_data_missed_summary.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp -a
+cp /data/earthquake_data/misses.txt /data/earthquake_data/misses.txt

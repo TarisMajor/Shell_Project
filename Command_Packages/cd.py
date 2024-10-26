@@ -15,5 +15,5 @@ def cd(**kwargs):
         modify_CWD(default)
         
     else:
-        modify_CWD(params)
+        get_CWD(params)
     
