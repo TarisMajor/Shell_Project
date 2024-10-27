@@ -33,6 +33,8 @@ def cp(**kwargs):
                 else: 
                     paste_dir_id = DbCommands.get_dir_id(db_path, paste_dir)
                     result = DbCommands.copy(db_path, copy_file, paste_file, paste_dir_id)
+            else:
+               return('File to be copied does not exist.')
         else:
             return('cp needs two files to function.')
                 

@@ -397,3 +397,9 @@ cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfil
 cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
 cp -a
 cp /data/earthquake_data/misses.txt /data/earthquake_data/misses.txt
+mv -t
+mv quad2.md quad3.md
+mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad3.md
+mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad4.txt
+mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad4.md
+mv /1000-Spatial_Data_Structures/quad4.md /1000-Spatial_Data_Structures/Btree/test.md

@@ -10,6 +10,26 @@ db_path = './P01/ApiStarter/data/filesystem.db'
 
 class DbCommands:
     
+    def move(db_path, file1, file2, file2_pid):
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        query = """
+        
+        UPDATE files
+        SET name = ?, pid = ?, modified_date = DATETIME('now')
+        WHERE name = ?
+        
+        """
+        
+        cursor.execute(query, (file2, file2_pid, file1))
+        conn.commit()
+        conn.close()
+        
+        return('Move Successful.')
+        
+    
     def copy(db_path, copy_file, paste_file, paste_pid):
         # Connect to the SQLite database
         conn = sqlite3.connect(db_path)
