@@ -8,5 +8,7 @@ from .echo import echo
 from .sqliteCRUD import SqliteCRUD
 from .mv import mv
 from .dbCommands import DbCommands
+from .exclamation import exclamation
 
-__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands"]
+
+__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands", "Exclamation"]

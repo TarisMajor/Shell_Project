@@ -10,6 +10,46 @@ db_path = './P01/ApiStarter/data/filesystem.db'
 
 class DbCommands:
     
+    def append_contents(db_path, file_name, dir_id, contents):
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        query = """
+        UPDATE files
+        SET contents = contents || ?
+        WHERE pid = ? AND name = ?;
+        """
+        cursor.execute(query, (contents, dir_id, file_name))
+        conn.commit()
+        conn.close()
+        
+        return(f'{file_name} was appended successfully.')
+    
+    def new_file(db_path, file_name, contents, pid):
+        
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Get the size of the string in bytes
+        size = len(contents.encode('utf-8'))
+        
+        # Encode contents to base64
+        encoded = contents.encode('utf-8')
+        contents = base64.b64encode(encoded)
+        
+        query = """
+        
+        INSERT INTO files (name, pid, oid, size, creation_date, modified_date, contents, read_permissions, write_permissions, execute_permissions, world_read, world_write, world_execute)
+        VALUES (?, ?, 1, ?, DATETIME('now'), DATETIME('now'), ?, 1, 1, 0, 0, 0, 0)
+        """
+        
+        cursor.execute(query, (file_name, pid, size, contents))
+        conn.commit()
+        conn.close()
+        return('Completed.')
+    
     def move(db_path, file1, file2, file2_pid):
         # Connect to the SQLite database
         conn = sqlite3.connect(db_path)

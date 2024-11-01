@@ -15,7 +15,10 @@ def decodeIt(encodedText):
     return decoded.decode("utf-8")
 
 def test():
-    cwd = "/1000-Spacial_Data_Structures"
+    cwd = "!!!!!9"
+    
+    cwd = list(cwd)
+    cmd = cwd.split(" ")
 
     if "/" in cwd:
         path = cwd.split("/")
@@ -24,14 +27,29 @@ def test():
 
 if __name__ == "__main__":
     
-    # r = requests.get("https://www.gutenberg.org/cache/epub/74614/pg74614.txt")
+    cwd = "!!!!!9"
     
-    r = 'This is plain text'
-
-    # print(r.text)
-
-    encoded = encodeIt(r)
-    print(encoded)
-
-    decoded = decodeIt(encoded)
-    print(decoded)
+    cwd = list(cwd)
+    
+    command = cwd[0]
+    params = cwd[1:]
+    params = ''.join(params)
+    
+    sub = []
+    sub.append(command)
+    sub.append(params)
+    subcmd = [sub]
+    
+    for i in range(len(subcmd)):
+        
+        try:
+           cmd = subcmd[i].strip()
+           cmd = cmd.split(" ")
+        except:
+           cmd = subcmd[i]
+           
+    print(cwd)
+    print(command)
+    print(params)
+    
+    print(subcmd)

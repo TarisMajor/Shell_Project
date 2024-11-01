@@ -3,11 +3,11 @@ import pkgutil
 import sqlite3
 import Command_Packages
 from Command_Packages.getch import Getch
+from Command_Packages.dbCommands import DbCommands
 from rich import print
 from rich.console import Console
 
 import sys
-import os
 
 # Dictionary to store the commands
 cmds = {}
@@ -15,6 +15,7 @@ cmds = {}
 # Set the current working directory 
 global cwd
 cwd = "/1000-Spatial_Data_Structures"
+db_path = './P01/ApiStarter/data/filesystem.db' 
 console = Console()
 
 def get_CWD():
@@ -85,7 +86,7 @@ def get_params(command):
 
 def write_to_history(data):
     # Open the file in append mode
-    with open('history.txt', 'a') as file:
+    with open('./P01/history.txt', 'a') as file:
         file.write(data)
         file.write("\n")
         file.close()
@@ -94,22 +95,42 @@ def write_to_history(data):
 def parse(shellInput):
     
     redirect = None
+    append = None
     
-    if ">" in shellInput:
-        shellInput, redirect = shellInput.split(">")
+    if "!" in shellInput:
+        shellInput = list(shellInput)
+        command = "exclamation"
+        params = shellInput[1:-1]
     
-    if "|" in shellInput:
-        subCmds = shellInput.split("|")
+        sub = []
+        i = 0
+        sub.append(command)
+        for i in range(len(params)):
+            sub.append(params[i])
+        subCmds = [sub]
+        
     else:
-        subCmds = [shellInput]
+        if " > " in shellInput:
+            shellInput, redirect = shellInput.split(" > ")
+            
+        if " >> " in shellInput:
+            shellInput, append = shellInput.split(" >> ")
+        
+        if "|" in shellInput:
+            subCmds = shellInput.split("|")
+        else:
+            subCmds = [shellInput]
 
     cmdList = []
     
     for i in range(len(subCmds)):
        
-        cmd = subCmds[i].strip()
-        cmd = cmd.split(" ")
-        
+        try:
+           cmd = subCmds[i].strip()
+           cmd = cmd.split(" ")
+        except:
+           cmd = subCmds[i]
+                
         cmdDict = {
             "cmd": cmd[0],
             "flags": get_flags(cmd),
@@ -119,7 +140,7 @@ def parse(shellInput):
         # freak | ls -l -a -h | grep cout hav.txt parms.txt
         
     #print(cmdList)
-    return cmdList
+    return (cmdList, redirect, append)
     
 def getCommands(commands):
     input = ""
@@ -162,9 +183,9 @@ if __name__ == "__main__":
         
     # if command == False:
         
-    commandList = parse(command)                #Parses the string into a list of dictionaries
+    commandList, redirect, append = parse(command)     #Parses the string into a list of dictionaries
     
-    result = ''
+    results = ''
     
     for item in commandList:
         cmd = item["cmd"]
@@ -173,15 +194,36 @@ if __name__ == "__main__":
         kwargs = {"flags":flags, "params": params}
         # Call the function dynamically from the dictionary
         if cmd in cmds:
-            result = cmds[cmd](**kwargs)
-            params.append(result)
+            results = cmds[cmd](**kwargs)
+            params.append(results)
       
         else:
             print(f"Command '{cmd}' not found.")
             
-        # history -rat blah.txt 
-        console.print(result)
-        # if result == False:
-        #     loop = result
+        if redirect:
+            redirect = redirect.split('/')
+            redirect = redirect[1:]
+            redirect_dir = redirect[-2]
+            redirect = redirect[-1]
+            
+            if DbCommands.file_exists(db_path, redirect):
+                results = 'This file already exists.'
+            else:           
+                dir_id = DbCommands.get_dir_id(db_path, redirect_dir)
+                results = DbCommands.new_file(db_path, redirect, results, dir_id)
+        
+        if append:
+            append = append.split('/')
+            append = append[1:]
+            append_dir = append[-2]
+            append = append[-1]
+            
+            if DbCommands.file_exists(db_path, append):
+                dir_id = DbCommands.get_dir_id(db_path, append_dir)
+                results = DbCommands.append_contents(db_path, append, dir_id, results)
+            else:
+                results = 'The file you are appending does not exist.'
+            
+        console.print(results)
     sys.exit(0)
         

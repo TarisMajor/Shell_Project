@@ -6,7 +6,7 @@ def history(**kwargs):
     params = kwargs.get("params")
     
     # Open the file in read mode
-    with open('history.txt', 'r') as file:
+    with open('./P01/history.txt', 'r') as file:
         
         data = file.read()
         file.close()
@@ -25,7 +25,7 @@ def history(**kwargs):
 
 
 if __name__ == "__main__":
-     with open('history.txt', 'r') as file:
+     with open('./P01/history.txt', 'r') as file:
          
         data = file.read()
         file.close()

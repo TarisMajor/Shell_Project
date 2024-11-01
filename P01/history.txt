@@ -403,3 +403,48 @@ mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad3.md
 mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad4.txt
 mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad4.md
 mv /1000-Spatial_Data_Structures/quad4.md /1000-Spatial_Data_Structures/Btree/test.md
+!!!!!
+!!!
+!!!
+!!!!
+history
+head history.txt
+head history
+head ./P01/history.txt
+head ./P01/history.txt
+history
+history
+history
+!!!!
+!!!!
+!!!!
+!!!!!
+!!!!!
+!!!
+head history.txt
+!
+history
+!!!
+!!!
+!!!
+ls
+head history.txt
+head ./P01/history.txt
+head -n 25 ./P01/history.txt
+!!!
+!!!!
+!!!
+!!!!
+!!!!
+!!!!
+!!!!
+!!!!
+!!!!!
+!!!!
+!!!!
+!!!!!
+!!!!!
+history
+!!!
+!!!!!
+!
