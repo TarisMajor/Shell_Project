@@ -32,6 +32,7 @@ def connSqLite(dbPath):
     cursor = conn.cursor()
     
 # Dynamically load all functions from Command_Packages into the dictionary
+
 def load_commands():
     global cmds
 
@@ -101,12 +102,10 @@ def parse(shellInput):
         shellInput = list(shellInput)
         command = "exclamation"
         params = shellInput[1:-1]
-    
+        params = ''.join(str(num) for num in params)
         sub = []
-        i = 0
         sub.append(command)
-        for i in range(len(params)):
-            sub.append(params[i])
+        sub.append(params)
         subCmds = [sub]
         
     else:
@@ -180,11 +179,9 @@ if __name__ == "__main__":
     ShellPrompt(prompt)                         #Print the prompt to the screen
 
     command = getCommands(input)                #Uses getch to get a string from the user
-        
-    # if command == False:
-        
+                
     commandList, redirect, append = parse(command)     #Parses the string into a list of dictionaries
-    
+    print(commandList)
     results = ''
     
     for item in commandList:
@@ -224,6 +221,6 @@ if __name__ == "__main__":
             else:
                 results = 'The file you are appending does not exist.'
             
-        console.print(results)
+    console.print(results)
     sys.exit(0)
         

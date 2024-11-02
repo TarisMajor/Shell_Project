@@ -27,29 +27,10 @@ def test():
 
 if __name__ == "__main__":
     
-    cwd = "!!!!!9"
+    cwd = '9'
     
-    cwd = list(cwd)
+    if cwd.isdigit():
+        cwd = int(cwd)
     
-    command = cwd[0]
-    params = cwd[1:]
-    params = ''.join(params)
-    
-    sub = []
-    sub.append(command)
-    sub.append(params)
-    subcmd = [sub]
-    
-    for i in range(len(subcmd)):
-        
-        try:
-           cmd = subcmd[i].strip()
-           cmd = cmd.split(" ")
-        except:
-           cmd = subcmd[i]
            
     print(cwd)
-    print(command)
-    print(params)
-    
-    print(subcmd)

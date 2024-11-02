@@ -11,4 +11,4 @@ from .dbCommands import DbCommands
 from .exclamation import exclamation
 
 
-__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands", "Exclamation"]
+__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands", "exclamation"]

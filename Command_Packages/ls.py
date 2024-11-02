@@ -53,7 +53,6 @@ def ls(**kwargs):
                 
         for param in params:
             if param == params[-1]:
-                parameter = param
                 if DbCommands.dir_exists(db_path, param):
                     dir_id = DbCommands.get_dir_id(db_path, param)
                     listing = DbCommands.get_listing(db_path, dir_id)
@@ -74,6 +73,7 @@ def ls(**kwargs):
                     return("Directory does not exist.")
            
     if flags:
+        name = paths[-1]
         flags = [flag[1:] for flag in flags]
         
         if len(flags) == 1:
@@ -81,7 +81,7 @@ def ls(**kwargs):
             
         for flag in flags:
             if flag in valid_flags:
-                dir_id = DbCommands.get_dir_id(db_path, parameter)
+                dir_id = DbCommands.get_dir_id(db_path, name)
                 listing = DbCommands.get_long_listing(db_path,dir_id, flags)
             else:
                 return("Not a valid flag.")
