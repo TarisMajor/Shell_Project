@@ -92,7 +92,6 @@ def write_to_history(data):
         file.write("\n")
         file.close()
 
-
 def parse(shellInput):
     
     redirect = None
@@ -109,12 +108,13 @@ def parse(shellInput):
         subCmds = [sub]
         
     else:
-        if " > " in shellInput:
-            shellInput, redirect = shellInput.split(" > ")
-            
+        
         if " >> " in shellInput:
             shellInput, append = shellInput.split(" >> ")
-        
+            
+        elif " > " in shellInput:
+            shellInput, redirect = shellInput.split(" > ")
+            
         if "|" in shellInput:
             subCmds = shellInput.split("|")
         else:
@@ -137,7 +137,6 @@ def parse(shellInput):
         }
         cmdList.append(cmdDict)
         # freak | ls -l -a -h | grep cout hav.txt parms.txt
-        
     #print(cmdList)
     return (cmdList, redirect, append)
     
@@ -181,19 +180,30 @@ if __name__ == "__main__":
     command = getCommands(input)                #Uses getch to get a string from the user
                 
     commandList, redirect, append = parse(command)     #Parses the string into a list of dictionaries
-    print(commandList)
+   
     results = ''
     
-    for item in commandList:
-        cmd = item["cmd"]
-        flags = item["flags"]
-        params = item["params"]
+    it = 0
+    data = 0
+    
+    for i in range(len(commandList)):
+        cmd = commandList[i]["cmd"]
+        flags = commandList[i]["flags"]
+        params = commandList[i]["params"]
+        if it == 0:
+            pass
+        else:
+            params.append(data)
         kwargs = {"flags":flags, "params": params}
         # Call the function dynamically from the dictionary
         if cmd in cmds:
             results = cmds[cmd](**kwargs)
-            params.append(results)
-      
+            if commandList[i] == commandList[-1]:
+                pass
+            else:
+                it =+ 1
+                data = results
+        
         else:
             print(f"Command '{cmd}' not found.")
             
@@ -203,11 +213,13 @@ if __name__ == "__main__":
             redirect_dir = redirect[-2]
             redirect = redirect[-1]
             
-            if DbCommands.file_exists(db_path, redirect):
-                results = 'This file already exists.'
-            else:           
+            if DbCommands.dir_exists(db_path, redirect_dir):
                 dir_id = DbCommands.get_dir_id(db_path, redirect_dir)
-                results = DbCommands.new_file(db_path, redirect, results, dir_id)
+                
+                if DbCommands.file_exists(db_path, redirect, dir_id):
+                    results = 'This file already exists.'
+                else:           
+                    results = DbCommands.new_file(db_path, redirect, results, dir_id)
         
         if append:
             append = append.split('/')
@@ -215,11 +227,16 @@ if __name__ == "__main__":
             append_dir = append[-2]
             append = append[-1]
             
-            if DbCommands.file_exists(db_path, append):
+            if DbCommands.dir_exists(db_path, append_dir):
+                print('Dir exists.')
                 dir_id = DbCommands.get_dir_id(db_path, append_dir)
-                results = DbCommands.append_contents(db_path, append, dir_id, results)
+                print(dir_id, append)
+                if DbCommands.file_exists(db_path, append, dir_id):
+                    results = DbCommands.append_contents(db_path, append, dir_id, results)
+                else:
+                    results = 'The file you are appending does not exist.'
             else:
-                results = 'The file you are appending does not exist.'
+                results = 'The directory does not exist.'
             
     console.print(results)
     sys.exit(0)
