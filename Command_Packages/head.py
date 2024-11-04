@@ -1,9 +1,6 @@
 # Command_Packages/head.py
-from .sqliteCRUD import SqliteCRUD
 from .dbCommands import DbCommands
-from shell import connSqLite
-import sqlite3
-import os
+from rich.text import Text
 
 db_path = './P01/ApiStarter/data/filesystem.db'   
 
@@ -46,14 +43,19 @@ def head(**kwargs):
     else:  
         n = 10
     
+    
     for param in params:
+        # If looking for a local file
         if "./P01" in param:
+            print('in local section')
             with open(param, 'r') as file:
                 for i in range(n):
                     line = file.readline().strip()
                     h = h + line + '\n'
                 file.close()
-        else:
+        # Looking in the database?
+        elif "/1000" in param:
+            print('in db section')
             # Connect to the database and look for the file
             if DbCommands.file_exists(db_path, param):
                 # print(f"The file '{param}' exists in the database.")
@@ -67,6 +69,12 @@ def head(**kwargs):
                 # Close the connection
             else:
                 return(f"The file '{param}' does not exist in the database.")
+        #Inputting a string
+        else:
+            string = params[0]
+            # print(string)
+            lines = string.split('\t')
+            h = lines[:n]
+            h = Text(h)
 
-               
     return(h)

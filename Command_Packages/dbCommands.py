@@ -1,8 +1,6 @@
 import sqlite3
 from rich.text import Text
 from rich import print
-from .sqliteCRUD import SqliteCRUD
-from prettytable import PrettyTable
 import base64
 
 
@@ -15,11 +13,31 @@ class DbCommands:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
         
+        # Get the old contents from the file
+        query = """
+        SELECT contents FROM files WHERE pid = ? AND name = ?;
+        """        
+        
+        cursor.execute(query, (dir_id, file_name))
+        
+        old_contents = cursor.fetchone()
+        old_contents = old_contents[0]
+        
+        decoded = base64.b64decode(old_contents)
+        decoded_content = decoded.decode('utf-8')
+        
         query = """
         UPDATE files
-        SET contents = contents || ?
+        SET contents = ?,
+            modified_date = DATETIME('now')
         WHERE pid = ? AND name = ?;
         """
+        contents = decoded_content + '\n' + str(contents)
+        
+        # Encode contents to base64
+        encoded = contents.encode('utf-8')
+        contents = base64.b64encode(encoded)
+        
         cursor.execute(query, (contents, dir_id, file_name))
         conn.commit()
         conn.close()
@@ -32,6 +50,7 @@ class DbCommands:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
         
+        contents = str(contents)
         # Get the size of the string in bytes
         size = len(contents.encode('utf-8'))
         
@@ -41,7 +60,7 @@ class DbCommands:
         
         query = """
         
-        INSERT INTO files (name, pid, oid, size, creation_date, modified_date, contents, read_permissions, write_permissions, execute_permissions, world_read, world_write, world_execute)
+        INSERT INTO files (name, pid, oid, size, creation_date, modified_date, contents, read_permission, write_permission, execute_permission, world_read, world_write, world_execute)
         VALUES (?, ?, 1, ?, DATETIME('now'), DATETIME('now'), ?, 1, 1, 0, 0, 0, 0)
         """
         
@@ -237,13 +256,14 @@ class DbCommands:
 
         return [fid, did]
     
-    def file_exists(db_path, name):
+    def file_exists(db_path, name, dir_id):
         """
         Check if a file exists in the SQLite database.
 
         Parameters:
             db_path (str): Path to the SQLite database.
             file_name (str): Name of the file to search for.
+            dir_id (int): Directory ID of the parent folder
 
         Returns:
             bool: True if the file exists, False otherwise.
@@ -251,14 +271,25 @@ class DbCommands:
         # Connect to the SQLite database
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
+        print('got into exists')
+        
+        name = str(name)
+        dir_id = str(dir_id)
+        print(f'name = {name} and pid = {dir_id}')
+        
+        query = """
+            SELECT EXISTS (SELECT 1 FROM files WHERE name = ? AND pid = ?);
+        """
 
         # Query to check if the file exists
-        cursor.execute("SELECT EXISTS(SELECT 1 FROM files WHERE name=?)", (name,))
+        cursor.execute(query, (name, dir_id))
     
         # Fetch the result
-        exists = cursor.fetchone()[0] == 1  # returns True if exists, False otherwise
+        exists = cursor.fetchone()[0] == 1   # returns True if exists, False otherwise
+        print(exists)
+        conn.close()
 
-        return exists
+        return bool(exists)
 
     def dir_exists(db_path, name):
         """

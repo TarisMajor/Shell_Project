@@ -142,7 +142,7 @@ def exclamation(**kwargs):
                         redirect_dir = redirect[-2]
                         redirect = redirect[-1]
                         
-                        if DbCommands.file_exists(db_path, redirect):
+                        if DbCommands.file_exists(db_path, redirect, redirect_dir):
                             results = 'This file already exists.'
                         else:           
                             dir_id = DbCommands.get_dir_id(db_path, redirect_dir)
@@ -153,9 +153,9 @@ def exclamation(**kwargs):
                         append = append[1:]
                         append_dir = append[-2]
                         append = append[-1]
+                        dir_id = DbCommands.get_dir_id(db_path, append_dir)
                         
-                        if DbCommands.file_exists(db_path, append):
-                            dir_id = DbCommands.get_dir_id(db_path, append_dir)
+                        if DbCommands.file_exists(db_path, append, dir_id):
                             results = DbCommands.append_contents(db_path, append, dir_id, results)
                         else:
                             results = 'The file you are appending does not exist.'

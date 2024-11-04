@@ -2,11 +2,10 @@
 from shell import cwd
 from shell import get_CWD
 from .dbCommands import DbCommands
-import os
-from rich import print
 
 
 db_path = './P01/ApiStarter/data/filesystem.db'  
+
 
 def ls(**kwargs):
     """

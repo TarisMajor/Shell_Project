@@ -522,3 +522,91 @@ ls -l
 !!
 ls -a
 ls -lah
+ls -lah > textfile.txt
+ls -lah > /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls -lah > /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+!!
+history
+!! >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+history >> /1000-Data_Structures/Astar/testfile.txt
+history >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+!!
+!!
+history >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+head ./P01/ApiStarter/data/beowulf > /1000-Spatial_Data_Structures/Astar/beohead.txt
+head ./P01/ApiStarter/data/beowulf.txt > /1000-Spatial_Data_Structures/Astar/beohead.txt
+ls >> /1000-Spatial_Data_Structures/Astar/beohead.txt
+head ./P01/ApiStarter/data/odyssy.txt > /1000-Spatial_Data_Structures/Astar/odyhead.txt
+ls >> /1000-Spatial_Data_Structures/Astar/odyhead.txt
+head ./P01/ApiStarter/data/beowulf.txt > /1000-Spatial_Data_Structures/ppts/beohead.txt
+head ./P01/ApiStarter/data/beowulf.txt > /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+!!
+ls > /1000-Spatial_Data_Structures/ppts/testls.txt
+ls > /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls -lah >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls -lah | head -n 2
+!!
+ls -lah | head -n 2
+ls | head -n 3
+ls | head -n 3
+ls | head -n 3
+ls | head -n 3
+ls | head -n 4
+ls | head -n 5
+!!
+ls | head -n 5
+ls | head -n 5
+ls
+ls
+ls
+ls
+ls | head -n 4
+ls | head -n 6
+ls
+ls
+ls
+ls | head -n 6
+ls | head -n 6
+ls
+ls | head -n 6
+ls | head -n 6
+ls | head -n 7
+!!
+ls | head -n 2
+ls | head -n 6
+ls | head -n 5
+ls | head -n 5
+ls | head -n 7
+ls | head -n 6
+ls | head -n 5
