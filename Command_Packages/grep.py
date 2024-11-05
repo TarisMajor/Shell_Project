@@ -64,8 +64,15 @@ def grep(**kwargs):
     #Grep gets the first parameter as a pattern which is a string
     pattern = params[0] 
     console = Console()
+    valid_flags = ['l', 'c']
+    
     #grep gets the next parameter as the file to read from
     file = params[-1]
+    count = 0
+    string = ''
+    string = Text(string)
+    newline = '\n'
+    newline = Text(newline)
     
     if ".txt" in file:
        if "./P01" in file:
@@ -75,7 +82,22 @@ def grep(**kwargs):
                   if pattern in line:
                      replaced_pattern = pattern
                      formatted_line = replace_pattern_with_format(line, pattern, replaced_pattern)
-                     console.print(formatted_line)
+                     count += 1
+                     string = string + formatted_line + newline
+            if flags:
+                  if len(flags) == 1:
+                     flags = flags[0]
+                     flags = flags.strip('-')
+                     if flags in valid_flags:
+                        if flags == 'c':
+                           return(f'{count}')
+                        elif flags == 'l':
+                           return(f'{file}')
+                  else:
+                        return(f'Only -l and -n are supported in this shell')
+            else:
+               console.print(string)
+               
        else:
           if "/1000" in file:
              file = file.split('/')
