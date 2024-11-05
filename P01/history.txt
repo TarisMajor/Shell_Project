@@ -610,3 +610,11 @@ ls | head -n 5
 ls | head -n 7
 ls | head -n 6
 ls | head -n 5
+grep beast ./P01/ApiStarter/data/beowulf.txt
+grep wolf ./P01/ApiStarter/data/beowulf.txt
+grep sword ./P01/ApiStarter/data/beowulf.txt
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+!!

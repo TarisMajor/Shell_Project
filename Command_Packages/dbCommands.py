@@ -125,16 +125,11 @@ class DbCommands:
         # Query to check if the file exists
         cursor.execute(f'SELECT contents FROM files WHERE id = "{file_id}" AND pid = "{dir_id}"')
         content = cursor.fetchone()
-        print(content)
+        
         content = b''.join(content)
         content = base64.b64decode(content)
         content = content.decode("utf-8")
-        
-        print(content)
-        # decoded_string = decoded_bytes.decode('utf-8')
-        
-        # content = decoded_string
-    
+            
         # Close the connection
         cursor.close()
         conn.close()

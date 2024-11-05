@@ -2,15 +2,40 @@
 import re
 from rich.console import Console
 from rich.text import Text
+from .dbCommands import DbCommands
 
-def replace_pattern(text, pattern, replacement):
-    # Define a function to format the replacement text
-    def format_replacement(match):
-        return Text(replacement, style="bold red")
+db_path = './P01/ApiStarter/data/filesystem.db'
 
-    # Use regex to substitute the pattern with formatted text
-    new_text = re.sub(pattern, format_replacement, text)
-    return new_text
+# def replace_pattern(text, pattern, replacement):
+#     # Define a function to format the replacement text
+#     def format_replacement(match):
+#         return Text(replacement, style="bold red")
+
+#     # Use regex to substitute the pattern with formatted text
+#     new_text = re.sub(pattern, format_replacement, text)
+#     return new_text
+
+def replace_pattern_with_format(plain_text, pattern, replacement, replacement_style="bold red"):
+    # Initialize a list to store parts of the rich Text (to preserve formatting)
+    result_text = Text()
+
+    # Use regular expression to find all occurrences of the pattern in the plain text
+    last_end = 0
+    for match in re.finditer(pattern, plain_text):
+        # Append the text before the match (if any)
+        result_text.append(plain_text[last_end:match.start()])
+
+        # Append the replacement with desired style
+        formatted_text = Text(replacement, style=replacement_style)
+        result_text.append(formatted_text)
+
+        # Update the last_end index to the end of the current match
+        last_end = match.end()
+
+    # Append any remaining text after the last match
+    result_text.append(plain_text[last_end:])
+    
+    return result_text
 
 def grep(**kwargs):
     
@@ -43,11 +68,39 @@ def grep(**kwargs):
     file = params[-1]
     
     if ".txt" in file:
-       with open(file, 'r') as open_file:
-          for line_number, line in enumerate(open_file, start=1):
-                if pattern in line:
-                  replace_pattern = pattern
-                  line = replace_pattern(line, pattern, replace_pattern)
-                  console.print(f"{line.strip()}")
+       if "./P01" in file:
+         # If looking in a local file 
+         with open(file, 'r') as open_file:
+            for line_number, line in enumerate(open_file, start=0):
+                  if pattern in line:
+                     replaced_pattern = pattern
+                     formatted_line = replace_pattern_with_format(line, pattern, replaced_pattern)
+                     console.print(formatted_line)
+       else:
+          if "/1000" in file:
+             file = file.split('/')
+             file = file[1:]
+             file_dir = file[-2]
+             file_name = file[-1]
+             
+             if DbCommands.dir_exists(db_path, file_dir):
+                dir_id = DbCommands.get_dir_id(db_path, file_dir)
+                if DbCommands.file_exists(db_path, file_name, dir_id):
+                   file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, file_name)
+                   contents = DbCommands.get_Content(db_path, file_id, dir_id)
+                   
+                   for line_number, line in enumerate(contents, start=0):
+                     if pattern in line:
+                        replaced_pattern = pattern
+                        line = replace_pattern_with_format(line, pattern, replaced_pattern)
+                        console.print(line)
+                else:
+                   return('File does not exist.')
+             else:
+                return('Directory does not exist.')
+          
+    else:
+       return("Please enter a text file to be searched.")
+         
                     
     

@@ -47,7 +47,6 @@ def head(**kwargs):
     for param in params:
         # If looking for a local file
         if "./P01" in param:
-            print('in local section')
             with open(param, 'r') as file:
                 for i in range(n):
                     line = file.readline().strip()
@@ -55,7 +54,6 @@ def head(**kwargs):
                 file.close()
         # Looking in the database?
         elif "/1000" in param:
-            print('in db section')
             # Connect to the database and look for the file
             if DbCommands.file_exists(db_path, param):
                 # print(f"The file '{param}' exists in the database.")
