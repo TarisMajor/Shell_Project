@@ -39,7 +39,7 @@ def replace_pattern_with_format(plain_text, pattern, replacement, replacement_st
 
 def grep(**kwargs):
     
-    """
+   """
     SYNOPSIS
        grep [OPTION...] PATTERNS [FILE...]
        grep [OPTION...] -e PATTERNS ... [FILE...]
@@ -58,24 +58,27 @@ def grep(**kwargs):
     """
     
     # Grep doesn't handle flags but handles params
-    flags = kwargs.get("flags")
-    params = kwargs.get("params")
+   flags = kwargs.get("flags")
+   params = kwargs.get("params")
     
-    #Grep gets the first parameter as a pattern which is a string
-    pattern = params[0] 
-    console = Console()
-    valid_flags = ['l', 'c']
+   #Grep gets the first parameter as a pattern which is a string
+   pattern = params[0] 
+   console = Console()
+   valid_flags = ['l', 'c']
     
-    #grep gets the next parameter as the file to read from
-    file = params[-1]
-    count = 0
-    string = ''
-    string = Text(string)
-    newline = '\n'
-    newline = Text(newline)
-    
-    if ".txt" in file:
-       if "./P01" in file:
+   #grep gets the next parameter as the file to read from
+   file = params[-1]
+   count = 0
+   string = ''
+   string = Text(string)
+   newline = '\n'
+   newline = Text(newline)
+   decoy = file
+   
+   size = len(decoy.encode('utf-8'))
+   
+   if size < 100:
+      if "./P01" in file:
          # If looking in a local file 
          with open(file, 'r') as open_file:
             for line_number, line in enumerate(open_file, start=0):
@@ -85,44 +88,84 @@ def grep(**kwargs):
                      count += 1
                      string = string + formatted_line + newline
             if flags:
-                  if len(flags) == 1:
-                     flags = flags[0]
-                     flags = flags.strip('-')
-                     if flags in valid_flags:
-                        if flags == 'c':
-                           return(f'{count}')
-                        elif flags == 'l':
-                           return(f'{file}')
-                  else:
-                        return(f'Only -l and -n are supported in this shell')
+               if len(flags) == 1:
+                  flags = flags[0]
+                  flags = flags.strip('-')
+                  if flags in valid_flags:
+                     if flags == 'c':
+                        return(f'{count}')
+                     elif flags == 'l':
+                        return(f'{file}')
+               else:
+                  return(f'Only -l and -n are supported in this shell.')
             else:
                console.print(string)
+                  
+      elif "/1000" in file:
+         file = file.split('/')
+         file = file[1:]
+         file_dir = file[-2]
+         file_name = file[-1]
                
-       else:
-          if "/1000" in file:
-             file = file.split('/')
-             file = file[1:]
-             file_dir = file[-2]
-             file_name = file[-1]
-             
-             if DbCommands.dir_exists(db_path, file_dir):
-                dir_id = DbCommands.get_dir_id(db_path, file_dir)
-                if DbCommands.file_exists(db_path, file_name, dir_id):
-                   file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, file_name)
-                   contents = DbCommands.get_Content(db_path, file_id, dir_id)
-                   
-                   for line_number, line in enumerate(contents, start=0):
-                     if pattern in line:
-                        replaced_pattern = pattern
-                        line = replace_pattern_with_format(line, pattern, replaced_pattern)
-                        console.print(line)
-                else:
-                   return('File does not exist.')
-             else:
-                return('Directory does not exist.')
-          
-    else:
-       return("Please enter a text file to be searched.")
+         if DbCommands.dir_exists(db_path, file_dir):
+            dir_id = DbCommands.get_dir_id(db_path, file_dir)
+            if DbCommands.file_exists(db_path, file_name, dir_id):
+               file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, file_name)
+               contents = DbCommands.get_Content(db_path, file_id, dir_id)
+                     
+               for line_number, line in enumerate(contents, start=0):
+                  if pattern in line:
+                     replaced_pattern = pattern
+                     formatted_line = replace_pattern_with_format(line, pattern, replaced_pattern)
+                     count += 1
+                     string = string + formatted_line + newline
+                           
+                     if flags:
+                        if len(flags) == 1:
+                           flags = flags[0]
+                           flags = flags.strip('-')
+                           if flags in valid_flags:
+                              if flags == 'c':
+                                 return(f'{count}')
+                              elif flags == 'l':
+                                 return(f'{file}')
+                           else:
+                              return(f'Only -l and -n are supported in this shell')
+                     else:
+                        console.print(string)
+            else:
+               return('File does not exist.')
+         else:
+            return('Directory does not exist.')
+      else:
+            return("Please enter a text file to be searched.")
+   else:
+      file = file.split('\n')
+      string = []
+      
+      for line_number, line in enumerate(file, start=0):
+         if pattern in line:
+            replaced_pattern = pattern
+            formatted_line = replace_pattern_with_format(line, pattern, replaced_pattern)
+            count += 1
+            # console.print(formatted_line)
+            string.append(formatted_line)
+            
+      if flags:
+         if len(flags) == 1:
+            flags = flags[0]
+            flags = flags.strip('-')
+            if flags in valid_flags:
+               if flags == 'c':
+                  return(f'{count}')
+               elif flags == 'l':
+                  return(f'{file}')
+         else:
+            return(f'Only -l and -n are supported in this shell')
+      else:
+         for i in range(len(string)):
+            console.print(string[i])
+    
          
                     
     

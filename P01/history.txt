@@ -623,3 +623,38 @@ grep -l sword ./P01/ApiStarter/data/beowulf.txt
 !!
 grep sword ./P01/ApiStarter/data/beowulf.txt
 grep -l sword ./P01/ApiStarter/data/beowulf.txt
+history | grep history
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+grep bacon /1000-Spatial_Data_Structures/quad2.txt
+grep history ./P01/ApiStarter/data/beowulf.txt
+ grep beo /1000-Spatial_Data_Structures/ppts/beohead.txt
+grep history ./P01/ApiStarter/data/beowulf.txt
+history | grep history
+history | grep history
+history | grep ls
+history
+history | grep history
+history | grep history
+history | grep history
+history | grep history
+history | grep ls
+history | grep ls
+!!
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+!!
+history | grep ls
