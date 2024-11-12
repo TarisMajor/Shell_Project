@@ -3,9 +3,6 @@ import shutil
 from Command_Packages.getch import Getch
 from Command_Packages.dbCommands import DbCommands
 import os
-import termios
-import tty
-import sys
 
 db_path = './P01/ApiStarter/data/filesystem.db'
 
@@ -55,7 +52,7 @@ def less(**kwargs):
     terminal_size = shutil.get_terminal_size()
     
     width, height = terminal_size
-    end = height
+    end = height - 1
         
     bleh = contents[top:end]
     for item in bleh:
@@ -72,12 +69,10 @@ def less(**kwargs):
                 
         # Arrow key pressed
         if '\x1b' in char:
-            
+                        
             ignore = getch()
             arrow = getch()
-            # if top == 0:
-            #     pass
-            # else:
+           
             if 'A' in arrow:
                 if top == 0:
                     pass
@@ -95,7 +90,7 @@ def less(**kwargs):
                 
                 if end >= len(contents):
                     os.system('clear')
-                    end = len(contents)
+                    end = len(contents) - 1
                     top = end - height
                     out = contents[top:end]
                     for line in out:
