@@ -658,3 +658,45 @@ history | grep ls
 history | grep ls
 !!
 history | grep ls
+history | grep -c ls
+history | grep -c head
+grep -c sword ./P01/ApiStarter/data/beowulf.txt
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+!!
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less

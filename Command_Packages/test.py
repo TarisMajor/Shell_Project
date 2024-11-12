@@ -4,6 +4,7 @@ import requests
 import sqlite3
 from rich.text import Text
 from rich.console import Console
+import shutil
 
 db_path = './P01/ApiStarter/data/filesystem.db'  
 
@@ -48,17 +49,16 @@ def test():
     cmd = cwd.split(" ")
 
     if "/" in cwd:
+        
         path = cwd.split("/")
         
     print(path)
 
 if __name__ == "__main__":
     
-    text = 'This is a sample word. Replace this word.'
-    pattern = 'word'
+    terminal_size = shutil.get_terminal_size()
     
-    replaced = replace_pattern_with_format(text, pattern, pattern)
-    console = Console()
-        
-    console.print(replaced)
+    width, height = terminal_size
+    
+    print(f"Console Size: {width} columns x {height} rows")
     
