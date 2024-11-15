@@ -7,6 +7,21 @@ import os
 db_path = './P01/ApiStarter/data/filesystem.db'
 
 def less(**kwargs):
+    """
+    NAME
+       less - opposite of more
+
+    DESCRIPTION
+       Less  is  a  program similar to more(1), but it has many more features.  Less does not have to read the entire
+       input file before starting, so with large input files it starts up faster than text editors like vi(1).   Less
+       uses  termcap  (or  terminfo on some systems), so it can run on a variety of terminals.  There is even limited
+       support for hardcopy terminals.  (On a hardcopy terminal, lines which should be printed  at  the  top  of  the
+       screen are prefixed with a caret.)
+
+       Commands  are  based  on  both more and vi.  Commands may be preceded by a decimal number, called N in the de‐
+       scriptions below.  The number is used by some commands, as indicated.
+
+    """
     flags = kwargs.get("flags")
     params = kwargs.get("params")
     

@@ -40,6 +40,9 @@ def replace_pattern_with_format(plain_text, pattern, replacement, replacement_st
 def grep(**kwargs):
     
    """
+    NAME
+       grep, egrep, fgrep, rgrep - print lines that match patterns
+
     SYNOPSIS
        grep [OPTION...] PATTERNS [FILE...]
        grep [OPTION...] -e PATTERNS ... [FILE...]

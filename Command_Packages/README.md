@@ -27,5 +27,4 @@ This is a project written in python that implements a basic shell.
 | >>          |            |
 | history     |            |
 | !           |            |
-| ls          |            |
-| |           |            |
+| "|"         |            |
